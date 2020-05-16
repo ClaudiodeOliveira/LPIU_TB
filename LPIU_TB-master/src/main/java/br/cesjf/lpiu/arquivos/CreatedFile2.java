@@ -6,7 +6,6 @@
 package br.cesjf.lpiu.arquivos;
 
 import br.cesjf.lpiu.modelo.Pessoa;
-import br.cesjf.lpiu.modelo.Relatorio;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -15,7 +14,7 @@ import java.io.ObjectOutputStream;
  *
  * @author claud
  */
-public class CreatedFile1 {
+public class CreatedFile2 {
 
     /**
      * @param args
@@ -23,14 +22,14 @@ public class CreatedFile1 {
      */
     public static void main(String[] args) {
         try {
-            FileOutputStream fout = new FileOutputStream("informacoes_relatorio.txt");
+            FileOutputStream fout = new FileOutputStream("informacoes_pessoa.txt");
             try (ObjectOutputStream objOut = new ObjectOutputStream(fout)) {
-                Relatorio rela = new Relatorio();
-                rela.setNome("Cláudio");
-                rela.setModelo("Uno");
-                rela.setPlaca("ppp-2200");
+                Pessoa pes = new Pessoa();
+                pes.setNome("Cláudio");
+                pes.setCnh("123456");
+                pes.setDataNasc("14/07/1995");
 
-                objOut.writeObject(rela);
+                objOut.writeObject(pes);
             }
         } catch (IOException e) {
         }

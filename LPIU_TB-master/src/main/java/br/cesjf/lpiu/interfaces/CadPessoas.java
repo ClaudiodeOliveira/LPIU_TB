@@ -7,9 +7,12 @@ package br.cesjf.lpiu.interfaces;
 
 import br.cesjf.lpiu.arquivos.ArquivoInCarro;
 import br.cesjf.lpiu.arquivos.ArquivoInPessoa;
+import br.cesjf.lpiu.arquivos.ArquivoInRelatorio;
 import br.cesjf.lpiu.arquivos.ArquivoOutPessoa;
+import br.cesjf.lpiu.arquivos.ArquivoOutRelatorio;
 import br.cesjf.lpiu.modelo.Automovel;
 import br.cesjf.lpiu.modelo.Pessoa;
+import br.cesjf.lpiu.modelo.Relatorio;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,9 +30,11 @@ public class CadPessoas extends javax.swing.JFrame {
 
     private ArquivoInCarro arqinCar = new ArquivoInCarro();
     private ArquivoInPessoa arqin = new ArquivoInPessoa();
+    private ArquivoInRelatorio arqinRela = new ArquivoInRelatorio();
     private Pessoa pess = null;
     int linha;
     private ArquivoOutPessoa arqout = new ArquivoOutPessoa();
+    private ArquivoOutRelatorio arqoutRela = new ArquivoOutRelatorio();
 
     /**
      * Creates new form CadastroPessoas
@@ -71,11 +76,6 @@ public class CadPessoas extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jpListaPessoa = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbTabelaPessoa = new javax.swing.JTable();
-        btAlterar = new javax.swing.JButton();
-        btExcluir = new javax.swing.JButton();
         jpCadPessoa = new javax.swing.JPanel();
         txtDataNasc = new javax.swing.JFormattedTextField();
         txtCNH = new javax.swing.JFormattedTextField();
@@ -104,6 +104,11 @@ public class CadPessoas extends javax.swing.JFrame {
         btSair = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtModelo = new javax.swing.JTable();
+        jpListaPessoa = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbTabelaPessoa = new javax.swing.JTable();
+        btAlterar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Pessoas");
@@ -118,54 +123,6 @@ public class CadPessoas extends javax.swing.JFrame {
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        tbTabelaPessoa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "CNH", "Data de Nascimento"
-            }
-        ));
-        tbTabelaPessoa.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tbTabelaPessoa);
-
-        btAlterar.setText("Alterar");
-
-        btExcluir.setText("Excluir");
-        btExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExcluirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpListaPessoaLayout = new javax.swing.GroupLayout(jpListaPessoa);
-        jpListaPessoa.setLayout(jpListaPessoaLayout);
-        jpListaPessoaLayout.setHorizontalGroup(
-            jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpListaPessoaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jpListaPessoaLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btExcluir)
-                .addGap(51, 51, 51))
-        );
-        jpListaPessoaLayout.setVerticalGroup(
-            jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpListaPessoaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btAlterar)
-                    .addComponent(btExcluir))
-                .addGap(0, 227, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Lista de Pessoas", jpListaPessoa);
 
         jpCadPessoa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -307,6 +264,11 @@ public class CadPessoas extends javax.swing.JFrame {
         jpCadPessoa.add(btLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 473, -1, -1));
 
         btLista.setText("Lista");
+        btLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListaActionPerformed(evt);
+            }
+        });
         jpCadPessoa.add(btLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 473, -1, -1));
 
         btSair.setText("Sair");
@@ -335,6 +297,54 @@ public class CadPessoas extends javax.swing.JFrame {
         jpCadPessoa.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 470, 158));
 
         jTabbedPane1.addTab("Cadastro de Pessoa", jpCadPessoa);
+
+        tbTabelaPessoa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "CNH", "Data de Nascimento"
+            }
+        ));
+        tbTabelaPessoa.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tbTabelaPessoa);
+
+        btAlterar.setText("Alterar");
+
+        btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpListaPessoaLayout = new javax.swing.GroupLayout(jpListaPessoa);
+        jpListaPessoa.setLayout(jpListaPessoaLayout);
+        jpListaPessoaLayout.setHorizontalGroup(
+            jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpListaPessoaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpListaPessoaLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(btAlterar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btExcluir)
+                .addGap(51, 51, 51))
+        );
+        jpListaPessoaLayout.setVerticalGroup(
+            jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpListaPessoaLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btAlterar)
+                    .addComponent(btExcluir))
+                .addGap(0, 227, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Lista de Pessoas", jpListaPessoa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -368,14 +378,24 @@ public class CadPessoas extends javax.swing.JFrame {
 
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
 
+        List<Automovel> listacar = new ArrayList<>();
+        List<Relatorio> listarela = new ArrayList<>();
+
         Pessoa pes = new Pessoa();
+        Relatorio rela = new Relatorio();
 
         pes.setNome(txtNome.getText());
         pes.setCnh(txtCNH.getText());
         pes.setDataNasc(txtDataNasc.getText());
 
+        rela.setNome(txtNome.getText());
+        linha = jtModelo.getSelectedRow();
+        rela.setModelo((String) jtModelo.getValueAt(linha, 0));
+        rela.setPlaca((String) jtModelo.getValueAt(linha, 1));
+
         try {
             arqout.Adicionar(pes);
+            arqoutRela.Adicionar(rela);
         } catch (IOException ex) {
             Logger.getLogger(CadPessoas.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -424,21 +444,21 @@ public class CadPessoas extends javax.swing.JFrame {
             modelopessoa.addRow(listarpessoa.get(i).getpessoa());
             cont++;
         }
-        
+
         cont = 1;
-        
+
         List<Automovel> listacar = new ArrayList<Automovel>();
-        
-       listacar = arqinCar.getTodosCarros();
-       DefaultTableModel modelocar = (DefaultTableModel) jtModelo.getModel();
-       for (int j =jtModelo.getRowCount() -1; j >= 0; --j){
-           modelocar.removeRow(j);
-       }
-       
-       for (int j = 0; j < listacar.size();j++){
-           modelocar.addRow(listacar.get(j).getcarro());
-           cont++;
-       }
+
+        listacar = arqinCar.getTodosCarros();
+        DefaultTableModel modelocar = (DefaultTableModel) jtModelo.getModel();
+        for (int j = jtModelo.getRowCount() - 1; j >= 0; --j) {
+            modelocar.removeRow(j);
+        }
+
+        for (int j = 0; j < listacar.size(); j++) {
+            modelocar.addRow(listacar.get(j).getcarro());
+            cont++;
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -469,6 +489,12 @@ public class CadPessoas extends javax.swing.JFrame {
     private void jtModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtModeloMouseClicked
         linha = jtModelo.getSelectedRow();
     }//GEN-LAST:event_jtModeloMouseClicked
+
+    private void btListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListaActionPerformed
+        TelaRelatorio rela = new TelaRelatorio();
+        rela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btListaActionPerformed
 
     /**
      * @param args the command line arguments

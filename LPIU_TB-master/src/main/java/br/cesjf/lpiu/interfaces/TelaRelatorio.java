@@ -15,6 +15,7 @@ import br.cesjf.lpiu.modelo.Automovel;
 import br.cesjf.lpiu.modelo.Relatorio;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -88,7 +89,20 @@ public class TelaRelatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       int cont = 1;
         List<Relatorio> listarela = new ArrayList<>();
+        
+        listarela =arqinRela.getTodasRelatorio();
+        DefaultTableModel modelorela = (DefaultTableModel) jtRelatorio.getModel();
+        
+        for (int i = jtRelatorio.getRowCount() -1; i >= 0; --i){
+            modelorela.removeRow(i);
+        }
+        
+        for(int i = 0; i < listarela.size(); i++){
+            modelorela.addRow(listarela.get(i).getrelatorio());
+            cont++;
+        }
         
        
     }//GEN-LAST:event_formWindowOpened
