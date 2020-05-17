@@ -23,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaRelatorio extends javax.swing.JFrame {
 
-    
     private ArquivoInCarro arqinCar = new ArquivoInCarro();
     private Automovel car = null;
     int linha;
@@ -32,6 +31,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
     private ArquivoOutRelatorio arqoutRela = new ArquivoOutRelatorio();
     private ArquivoInPessoa arqinPes = new ArquivoInPessoa();
     private ArquivoOutPessoa arqoutPes = new ArquivoOutPessoa();
+
     /**
      * Creates new form TelaRelatorio
      */
@@ -51,7 +51,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtRelatorio = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -86,25 +86,27 @@ public class TelaRelatorio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       int cont = 1;
+        
+        int cont = 1;
         List<Relatorio> listarela = new ArrayList<>();
-        
-        listarela =arqinRela.getTodasRelatorio();
+
+        listarela = arqinRela.getTodasRelatorio();
         DefaultTableModel modelorela = (DefaultTableModel) jtRelatorio.getModel();
-        
-        for (int i = jtRelatorio.getRowCount() -1; i >= 0; --i){
+
+        for (int i = jtRelatorio.getRowCount() - 1; i >= 0; --i) {
             modelorela.removeRow(i);
         }
-        
-        for(int i = 0; i < listarela.size(); i++){
+
+        for (int i = 0; i < listarela.size(); i++) {
             modelorela.addRow(listarela.get(i).getrelatorio());
             cont++;
         }
-        
-       
+
+
     }//GEN-LAST:event_formWindowOpened
 
     /**

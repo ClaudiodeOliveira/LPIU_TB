@@ -104,6 +104,8 @@ public class CadPessoas extends javax.swing.JFrame {
         btSair = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtModelo = new javax.swing.JTable();
+        txtteste = new javax.swing.JTextField();
+        txtteste2 = new javax.swing.JTextField();
         jpListaPessoa = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTabelaPessoa = new javax.swing.JTable();
@@ -124,31 +126,23 @@ public class CadPessoas extends javax.swing.JFrame {
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jpCadPessoa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         try {
             txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jpCadPessoa.add(txtDataNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 31, 141, -1));
 
         try {
             txtCNH.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#############")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jpCadPessoa.add(txtCNH, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 31, 126, -1));
 
         lbNome.setText("Nome:");
-        jpCadPessoa.add(lbNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3, -1, -1));
-        jpCadPessoa.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 0, 427, -1));
 
         lbDataNasc.setText("Data de Nascimento:");
-        jpCadPessoa.add(lbDataNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 34, -1, -1));
 
         jLabel3.setText("CNH:");
-        jpCadPessoa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 34, -1, -1));
 
         jpEndereço.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -212,7 +206,7 @@ public class CadPessoas extends javax.swing.JFrame {
                 .addGroup(jpEndereçoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEndereçoLayout.createSequentialGroup()
                         .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 87, Short.MAX_VALUE))
                     .addComponent(txtBairro)
                     .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -245,15 +239,12 @@ public class CadPessoas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpCadPessoa.add(jpEndereço, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 69, 462, -1));
-
         btAdicionar.setText("Adicionar");
         btAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAdicionarActionPerformed(evt);
             }
         });
-        jpCadPessoa.add(btAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 473, -1, -1));
 
         btLimpar.setText("Limpar");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +252,6 @@ public class CadPessoas extends javax.swing.JFrame {
                 btLimparActionPerformed(evt);
             }
         });
-        jpCadPessoa.add(btLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 473, -1, -1));
 
         btLista.setText("Lista");
         btLista.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +259,6 @@ public class CadPessoas extends javax.swing.JFrame {
                 btListaActionPerformed(evt);
             }
         });
-        jpCadPessoa.add(btLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 473, -1, -1));
 
         btSair.setText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
@@ -277,7 +266,6 @@ public class CadPessoas extends javax.swing.JFrame {
                 btSairActionPerformed(evt);
             }
         });
-        jpCadPessoa.add(btSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, -1));
 
         jtModelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -294,7 +282,86 @@ public class CadPessoas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtModelo);
 
-        jpCadPessoa.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 470, 158));
+        txtteste2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtteste2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpCadPessoaLayout = new javax.swing.GroupLayout(jpCadPessoa);
+        jpCadPessoa.setLayout(jpCadPessoaLayout);
+        jpCadPessoaLayout.setHorizontalGroup(
+            jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                        .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                                .addComponent(lbNome)
+                                .addGap(4, 4, 4)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(10, 10, 10)
+                                .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(lbDataNasc)
+                                .addGap(4, 4, 4)
+                                .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jpEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadPessoaLayout.createSequentialGroup()
+                                .addComponent(txtteste, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(124, 124, 124)
+                                .addComponent(txtteste2))
+                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                                .addComponent(btAdicionar)
+                                .addGap(57, 57, 57)
+                                .addComponent(btLimpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btLista)
+                                .addGap(62, 62, 62)
+                                .addComponent(btSair)))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jpCadPessoaLayout.setVerticalGroup(
+            jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lbNome))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(lbDataNasc))))
+                .addGap(18, 18, 18)
+                .addComponent(jpEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtteste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtteste2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btAdicionar)
+                    .addComponent(btLimpar)
+                    .addComponent(btLista)
+                    .addComponent(btSair)))
+        );
 
         jTabbedPane1.addTab("Cadastro de Pessoa", jpCadPessoa);
 
@@ -341,7 +408,7 @@ public class CadPessoas extends javax.swing.JFrame {
                 .addGroup(jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAlterar)
                     .addComponent(btExcluir))
-                .addGap(0, 227, Short.MAX_VALUE))
+                .addGap(0, 187, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de Pessoas", jpListaPessoa);
@@ -379,8 +446,7 @@ public class CadPessoas extends javax.swing.JFrame {
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
 
         List<Automovel> listacar = new ArrayList<>();
-        List<Relatorio> listarela = new ArrayList<>();
-
+       
         Pessoa pes = new Pessoa();
         Relatorio rela = new Relatorio();
 
@@ -389,13 +455,16 @@ public class CadPessoas extends javax.swing.JFrame {
         pes.setDataNasc(txtDataNasc.getText());
 
         rela.setNome(txtNome.getText());
-        linha = jtModelo.getSelectedRow();
-        rela.setModelo((String) jtModelo.getValueAt(linha, 0));
-        rela.setPlaca((String) jtModelo.getValueAt(linha, 1));
-
+        rela.setModelo(txtteste.getText());  
+        rela.setPlaca(txtteste2.getText());
+        
+        try {
+            arqoutRela.Adicionar(rela);
+        } catch (IOException ex) {
+            Logger.getLogger(CadPessoas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             arqout.Adicionar(pes);
-            arqoutRela.Adicionar(rela);
         } catch (IOException ex) {
             Logger.getLogger(CadPessoas.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -420,6 +489,7 @@ public class CadPessoas extends javax.swing.JFrame {
             modelopessoa.addRow(listarpessoa.get(i).getpessoa());
             cont++;
         }
+            
     }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -487,7 +557,9 @@ public class CadPessoas extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void jtModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtModeloMouseClicked
-        linha = jtModelo.getSelectedRow();
+       linha = jtModelo.getSelectedRow();
+       txtteste.setText((String)jtModelo.getValueAt(linha, 0));
+       txtteste2.setText((String)jtModelo.getValueAt(linha, 1));
     }//GEN-LAST:event_jtModeloMouseClicked
 
     private void btListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListaActionPerformed
@@ -495,6 +567,10 @@ public class CadPessoas extends javax.swing.JFrame {
         rela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btListaActionPerformed
+
+    private void txtteste2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtteste2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtteste2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -567,5 +643,7 @@ public class CadPessoas extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JFormattedTextField txtNumero;
     private javax.swing.JTextField txtRua;
+    private javax.swing.JTextField txtteste;
+    private javax.swing.JTextField txtteste2;
     // End of variables declaration//GEN-END:variables
 }

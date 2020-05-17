@@ -298,6 +298,7 @@ public class CadCarro extends javax.swing.JFrame {
     private void jbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddActionPerformed
 
         Automovel auto = new Automovel();
+       
         
         auto.setPlaca(txtPlaca.getText());
         auto.setModelo(txtModelo.getText());

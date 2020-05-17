@@ -5,11 +5,13 @@
  */
 package br.cesjf.lpiu.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author morae
  */
-public class Relatorio {
+public class Relatorio implements Serializable {
     private String nome;
     private String modelo;
     private String placa;

@@ -5,7 +5,6 @@
  */
 package br.cesjf.lpiu.arquivos;
 
-import br.cesjf.lpiu.modelo.Pessoa;
 import br.cesjf.lpiu.modelo.Relatorio;
 import java.io.FileOutputStream;
 import java.io.IOException;
