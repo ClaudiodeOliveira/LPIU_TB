@@ -28,6 +28,13 @@ public class CreatedFile2 {
                 pes.setNome("Cláudio");
                 pes.setCnh("123456");
                 pes.setDataNasc("14/07/1995");
+                pes.setRua("Maria das Flores");
+                pes.setBairro("Renascença");
+                pes.setNumero("430");
+                pes.setComplemento("Apt 305");
+                pes.setCidade("Manus");
+                pes.setEstado("AM");
+                pes.setCep("32051-450");
 
                 objOut.writeObject(pes);
             }

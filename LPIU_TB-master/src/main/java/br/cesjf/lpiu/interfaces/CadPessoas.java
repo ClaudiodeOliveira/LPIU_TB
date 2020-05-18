@@ -100,17 +100,20 @@ public class CadPessoas extends javax.swing.JFrame {
         txtComplemento = new javax.swing.JTextField();
         btAdicionar = new javax.swing.JButton();
         btLimpar = new javax.swing.JButton();
-        btLista = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtModelo = new javax.swing.JTable();
-        txtteste = new javax.swing.JTextField();
-        txtteste2 = new javax.swing.JTextField();
+        txtPlaca = new javax.swing.JFormattedTextField();
+        jbAltear = new javax.swing.JButton();
+        txtModelo = new javax.swing.JTextField();
         jpListaPessoa = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTabelaPessoa = new javax.swing.JTable();
         btAlterar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
+        jbExluirRela = new javax.swing.JButton();
+        jpRelatorio = new javax.swing.JScrollPane();
+        jtRelatorio = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Pessoas");
@@ -206,7 +209,7 @@ public class CadPessoas extends javax.swing.JFrame {
                 .addGroup(jpEndereçoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEndereçoLayout.createSequentialGroup()
                         .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 87, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(txtBairro)
                     .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -253,13 +256,6 @@ public class CadPessoas extends javax.swing.JFrame {
             }
         });
 
-        btLista.setText("Lista");
-        btLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btListaActionPerformed(evt);
-            }
-        });
-
         btSair.setText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +268,7 @@ public class CadPessoas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Modelo", "Placa"
+                "Placa", "Modelo"
             }
         ));
         jtModelo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -282,9 +278,16 @@ public class CadPessoas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtModelo);
 
-        txtteste2.addActionListener(new java.awt.event.ActionListener() {
+        try {
+            txtPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("???-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jbAltear.setText("Alterar");
+        jbAltear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtteste2ActionPerformed(evt);
+                jbAltearActionPerformed(evt);
             }
         });
 
@@ -293,42 +296,37 @@ public class CadPessoas extends javax.swing.JFrame {
         jpCadPessoaLayout.setHorizontalGroup(
             jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCadPessoaLayout.createSequentialGroup()
-                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jpEndereço, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpCadPessoaLayout.createSequentialGroup()
-                        .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
-                                .addComponent(lbNome)
-                                .addGap(4, 4, 4)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(lbDataNasc)
-                                .addGap(4, 4, 4)
-                                .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jpEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbDataNasc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpCadPessoaLayout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(lbNome)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpCadPessoaLayout.createSequentialGroup()
+                        .addComponent(btAdicionar)
+                        .addGap(29, 29, 29)
                         .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadPessoaLayout.createSequentialGroup()
-                                .addComponent(txtteste, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(124, 124, 124)
-                                .addComponent(txtteste2))
                             .addGroup(jpCadPessoaLayout.createSequentialGroup()
-                                .addComponent(btAdicionar)
-                                .addGap(57, 57, 57)
+                                .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtModelo))
+                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
                                 .addComponent(btLimpar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btLista)
-                                .addGap(62, 62, 62)
-                                .addComponent(btSair)))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jbAltear)))
+                        .addGap(36, 36, 36)
+                        .addComponent(btSair)))
+                .addContainerGap())
         );
         jpCadPessoaLayout.setVerticalGroup(
             jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,29 +336,36 @@ public class CadPessoas extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(lbNome))
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
                 .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpCadPessoaLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addGap(11, 11, 11)
                         .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(lbDataNasc))))
+                            .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel3))))
+                    .addGroup(jpCadPessoaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jpEndereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtteste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtteste2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btAdicionar)
-                    .addComponent(btLimpar)
-                    .addComponent(btLista)
-                    .addComponent(btSair)))
+                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbAltear, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpCadPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Cadastro de Pessoa", jpCadPessoa);
@@ -370,7 +375,7 @@ public class CadPessoas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "CNH", "Data de Nascimento"
+                "Nome", "CNH", "Data de Nascimento", "Endereco", "Numero", "Complemento", "Bairro", "Cidade", "Estado", "CEP", "Rua"
             }
         ));
         tbTabelaPessoa.getTableHeader().setReorderingAllowed(false);
@@ -385,112 +390,72 @@ public class CadPessoas extends javax.swing.JFrame {
             }
         });
 
+        jbExluirRela.setText("Excluir");
+        jbExluirRela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExluirRelaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpListaPessoaLayout = new javax.swing.GroupLayout(jpListaPessoa);
         jpListaPessoa.setLayout(jpListaPessoaLayout);
         jpListaPessoaLayout.setHorizontalGroup(
             jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpListaPessoaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jpListaPessoaLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(btAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
                 .addComponent(btExcluir)
                 .addGap(51, 51, 51))
+            .addComponent(jScrollPane1)
+            .addGroup(jpListaPessoaLayout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jbExluirRela, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpListaPessoaLayout.setVerticalGroup(
             jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpListaPessoaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jbExluirRela, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(308, 308, 308)
                 .addGroup(jpListaPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAlterar)
                     .addComponent(btExcluir))
-                .addGap(0, 187, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de Pessoas", jpListaPessoa);
+
+        jtRelatorio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "CNH", "Modelo", "Placa"
+            }
+        ));
+        jpRelatorio.setViewportView(jtRelatorio);
+
+        jTabbedPane1.addTab("Relatorio", jpRelatorio);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        new Principal().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btSairActionPerformed
-
-    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-        limpar();
-        jpListaPessoa.setVisible(true);
-    }//GEN-LAST:event_btLimparActionPerformed
-
-    private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
-
-        List<Automovel> listacar = new ArrayList<>();
-       
-        Pessoa pes = new Pessoa();
-        Relatorio rela = new Relatorio();
-
-        pes.setNome(txtNome.getText());
-        pes.setCnh(txtCNH.getText());
-        pes.setDataNasc(txtDataNasc.getText());
-
-        rela.setNome(txtNome.getText());
-        rela.setModelo(txtteste.getText());  
-        rela.setPlaca(txtteste2.getText());
-        
-        try {
-            arqoutRela.Adicionar(rela);
-        } catch (IOException ex) {
-            Logger.getLogger(CadPessoas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            arqout.Adicionar(pes);
-        } catch (IOException ex) {
-            Logger.getLogger(CadPessoas.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-
-        JOptionPane.showMessageDialog(null, "Pessoa cadastrada com sucesso!");
-
-        limpar();
-
-        int cont = 1;
-
-        List<Pessoa> listarpessoa = new ArrayList<>();
-
-        listarpessoa = arqin.getTodasPessoas();
-        DefaultTableModel modelopessoa = (DefaultTableModel) tbTabelaPessoa.getModel();
-
-        for (int i = tbTabelaPessoa.getRowCount() - 1; i >= 0; --i) {
-            modelopessoa.removeRow(i);
-        }
-
-        for (int i = 0; i < listarpessoa.size(); i++) {
-            modelopessoa.addRow(listarpessoa.get(i).getpessoa());
-            cont++;
-        }
-            
-    }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Principal princ = new Principal();
@@ -529,6 +494,22 @@ public class CadPessoas extends javax.swing.JFrame {
             modelocar.addRow(listacar.get(j).getcarro());
             cont++;
         }
+
+        cont = 1;
+
+        List<Relatorio> listarela = new ArrayList<>();
+
+        listarela = arqinRela.getTodasRelatorio();
+        DefaultTableModel modelorela = (DefaultTableModel) jtRelatorio.getModel();
+
+        for (int i = jtRelatorio.getRowCount() - 1; i >= 0; --i) {
+            modelorela.removeRow(i);
+        }
+
+        for (int i = 0; i < listarela.size(); i++) {
+            modelorela.addRow(listarela.get(i).getrelatorio());
+            cont++;
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -557,20 +538,147 @@ public class CadPessoas extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void jtModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtModeloMouseClicked
-       linha = jtModelo.getSelectedRow();
-       txtteste.setText((String)jtModelo.getValueAt(linha, 0));
-       txtteste2.setText((String)jtModelo.getValueAt(linha, 1));
+        linha = jtModelo.getSelectedRow();
+        txtPlaca.setText((String) jtModelo.getValueAt(linha, 0));
     }//GEN-LAST:event_jtModeloMouseClicked
 
-    private void btListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListaActionPerformed
-        TelaRelatorio rela = new TelaRelatorio();
-        rela.setVisible(true);
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        new Principal().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btListaActionPerformed
+    }//GEN-LAST:event_btSairActionPerformed
 
-    private void txtteste2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtteste2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtteste2ActionPerformed
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        limpar();
+        jpListaPessoa.setVisible(true);
+    }//GEN-LAST:event_btLimparActionPerformed
+
+    private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
+
+        List<Automovel> listacar = new ArrayList<>();
+
+        Pessoa pes = new Pessoa();
+        Relatorio rela = new Relatorio();
+
+        pes.setNome(txtNome.getText());
+        pes.setCnh(txtCNH.getText());
+        pes.setDataNasc(txtDataNasc.getText());
+        pes.setBairro(txtBairro.getText());
+        pes.setCep(txtCEP.getText());
+        pes.setCidade(txtCidade.getText());
+        pes.setComplemento(txtComplemento.getText());
+        pes.setNumero(txtNumero.getText());
+        pes.setRua(txtRua.getText());
+        pes.setEstado((String) comboEstado.getSelectedItem());
+
+        rela.setNome(txtNome.getText());
+        rela.setCnh(txtCNH.getText());
+        rela.setPlaca(txtPlaca.getText());
+
+        try {
+            arqout.Adicionar(pes);
+        } catch (IOException ex) {
+            Logger.getLogger(CadPessoas.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(null, "Pessoa cadastrada com sucesso!");
+
+        limpar();
+
+        int cont = 1;
+
+        List<Pessoa> listarpessoa = new ArrayList<>();
+
+        listarpessoa = arqin.getTodasPessoas();
+        DefaultTableModel modelopessoa = (DefaultTableModel) tbTabelaPessoa.getModel();
+
+        for (int i = tbTabelaPessoa.getRowCount() - 1; i >= 0; --i) {
+            modelopessoa.removeRow(i);
+        }
+
+        for (int i = 0; i < listarpessoa.size(); i++) {
+            modelopessoa.addRow(listarpessoa.get(i).getpessoa());
+            cont++;
+        }
+
+        cont = 1;
+        List<Relatorio> listarela = new ArrayList<>();
+
+        listarela = arqinRela.getTodasRelatorio();
+        DefaultTableModel modelorela = (DefaultTableModel) jtRelatorio.getModel();
+
+        for (int i = jtRelatorio.getRowCount() - 1; i >= 0; --i) {
+            modelorela.removeRow(i);
+        }
+
+        for (int i = 0; i < listarela.size(); i++) {
+            modelorela.addRow(listarela.get(i).getrelatorio());
+            cont++;
+        }
+    }//GEN-LAST:event_btAdicionarActionPerformed
+
+    private void jbExluirRelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExluirRelaActionPerformed
+         DefaultTableModel modelo = (DefaultTableModel) jtRelatorio.getModel();
+        List<Relatorio> list = new ArrayList<Relatorio>();
+        ArrayList<Relatorio> nova_list = new ArrayList<Relatorio>();
+        linha = jtRelatorio.getSelectedRow();
+        Object valor = modelo.getValueAt(linha, 0);
+        list = arqinRela.getTodasRelatorio();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (!(list.get(i).getPlaca().equals(valor))) {
+                nova_list.add(list.get(i));
+            }
+        }
+        try {
+            arqoutRela.recadastrar_todos(nova_list);
+        } catch (IOException ex) {
+            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        modelo.removeRow(linha);
+        JOptionPane.showMessageDialog(null, "Registro apagada com sucesso");
+    }//GEN-LAST:event_jbExluirRelaActionPerformed
+
+    private void jbAltearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltearActionPerformed
+        ArrayList<Pessoa> lista = new ArrayList<>();
+        lista = (ArrayList<Pessoa>) arqin.getTodasPessoas();
+        
+        lista.get(linha).setNome(txtNome.getText());
+        lista.get(linha).setDataNasc(txtDataNasc.getText());
+        lista.get(linha).setCnh(txtCNH.getText());
+        lista.get(linha).setRua(txtRua.getText());
+        lista.get(linha).setBairro(txtBairro.getText());
+        lista.get(linha).setNumero(txtNumero.getText());
+        lista.get(linha).setComplemento(txtComplemento.getText());
+        lista.get(linha).setCidade(txtCidade.getText());
+        lista.get(linha).setEstado((String) comboEstado.getSelectedItem());
+        lista.get(linha).setCep(txtCEP.getText());
+
+        try {
+            arqout.recadastrar_todos(lista);
+        } catch (IOException ex) {
+            Logger.getLogger(CadPessoas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
+
+        limpar();
+
+        DefaultTableModel modelo = (DefaultTableModel) tbTabelaPessoa.getModel();
+
+        if (tbTabelaPessoa.getRowCount() > 0) {
+            for (int i = tbTabelaPessoa.getRowCount() - 1; i > 0; i--) {
+                modelo.removeRow(i);
+            }
+        }
+
+        List<Pessoa> listPessoa2 = new ArrayList<>();
+        listPessoa2 = arqin.getTodasPessoas();
+
+        for (int i = 0; i < listPessoa2.size(); i++) {
+            modelo.addRow(listPessoa2.get(i).getpessoa());
+        }
+    }//GEN-LAST:event_jbAltearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,17 +721,20 @@ public class CadPessoas extends javax.swing.JFrame {
     private javax.swing.JButton btAlterar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLimpar;
-    private javax.swing.JButton btLista;
     private javax.swing.JButton btSair;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jbAltear;
+    private javax.swing.JButton jbExluirRela;
     private javax.swing.JPanel jpCadPessoa;
     private javax.swing.JPanel jpEndereço;
     private javax.swing.JPanel jpListaPessoa;
+    private javax.swing.JScrollPane jpRelatorio;
     private javax.swing.JTable jtModelo;
+    private javax.swing.JTable jtRelatorio;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCEP;
     private javax.swing.JLabel lbCidade;
@@ -640,10 +751,10 @@ public class CadPessoas extends javax.swing.JFrame {
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JFormattedTextField txtDataNasc;
+    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNome;
     private javax.swing.JFormattedTextField txtNumero;
+    private javax.swing.JFormattedTextField txtPlaca;
     private javax.swing.JTextField txtRua;
-    private javax.swing.JTextField txtteste;
-    private javax.swing.JTextField txtteste2;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,11 +13,22 @@ import java.io.Serializable;
  */
 public class Relatorio implements Serializable {
     private String nome;
+    private String cnh;
     private String modelo;
     private String placa;
 
     public Relatorio() {
     }
+
+    public String getCnh() {
+        return cnh;
+    }
+
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
+    
+    
 
     public String getNome() {
         return nome;
@@ -45,11 +56,13 @@ public class Relatorio implements Serializable {
 
     @Override
     public String toString() {
-        return "Relatorio{" + "nome=" + nome + ", modelo=" + modelo + ", placa=" + placa + '}';
+        return "Relatorio{" + "nome=" + nome + ", cnh=" + cnh + ", modelo=" + modelo + ", placa=" + placa + '}';
     }
+
+    
     
     public Object [] getrelatorio(){
-        Object relatorio[]={nome,modelo,placa};
+        Object relatorio[]={nome,cnh,modelo,placa};
         return relatorio;
     }
     

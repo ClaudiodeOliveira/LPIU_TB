@@ -26,6 +26,7 @@ public class CreatedFile1 {
             try (ObjectOutputStream objOut = new ObjectOutputStream(fout)) {
                 Relatorio rela = new Relatorio();
                 rela.setNome("Cláudio");
+                rela.setCnh("1234567");
                 rela.setModelo("Uno");
                 rela.setPlaca("ppp-2200");
 
