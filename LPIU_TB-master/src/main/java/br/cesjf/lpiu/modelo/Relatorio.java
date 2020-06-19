@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author morae
+ * @author claud
  */
 public class Relatorio implements Serializable {
     private String nome;
