@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author morae
+ * @author claud
  */
 public class ArquivoInRelatorio {
     private FileInputStream fin = null;
